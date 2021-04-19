@@ -34,23 +34,23 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(600, 200);
+  createCanvas(windowWidth,windowHeight);
   
-  trex = createSprite(50,180,20,50);
+  trex = createSprite(50,height - 70,20,50);
   
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
   trex.scale = 0.5;
   
-  ground = createSprite(200,180,400,20);
+  ground = createSprite(width/2,height,width,2);
   ground.addImage("ground",groundImage);
   ground.x = ground.width /2;
   ground.velocityX = -(6 + 3*score/100);
   
-  gameOver = createSprite(300,100);
+  gameOver = createSprite(width/2,height/2);
   gameOver.addImage(gameOverImg);
   
-  restart = createSprite(300,140);
+  restart = createSprite(width/2,height/2-50);
   restart.addImage(restartImg);
   
   gameOver.scale = 0.5;
@@ -59,7 +59,7 @@ function setup() {
   gameOver.visible = false;
   restart.visible = false;
   
-  invisibleGround = createSprite(200,190,400,10);
+  invisibleGround = createSprite(width/2,height - 10,400,10);
   invisibleGround.visible = false;
   
   cloudsGroup = new Group();
@@ -71,7 +71,7 @@ function setup() {
 function draw() {
   //trex.debug = true;
   background(255);
-  text("Score: "+ score, 500,50);
+  text("Score: "+ score, width-100,height-10);
   
   if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
